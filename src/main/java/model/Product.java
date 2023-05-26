@@ -10,6 +10,14 @@ public class Product {
     private String unit;
     private Date right_away;
 
+    public Product(String p_id, String name, String price, String weight, String unit) {
+        this.p_id = p_id;
+        this.name = name;
+        this.price = price;
+        this.weight = weight;
+        this.unit = unit;
+    }
+
     public Product(String p_id, String name, String price, String weight, String unit, Date right_away) {
         this.p_id = p_id;
         this.name = name;
@@ -65,5 +73,16 @@ public class Product {
 
     public void setRight_away(Date right_away) {
         this.right_away = right_away;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "p_id='" + p_id + '\'' +
+                ", name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", weight='" + weight + '\'' +
+                ", unit='" + unit + '\'' +
+                '}';
     }
 }
