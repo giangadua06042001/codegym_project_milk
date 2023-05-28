@@ -3,14 +3,14 @@ package model;
 import java.util.Date;
 
 public class Product {
-    private String p_id;
+    private int p_id;
     private String p_name;
     private String p_price;
     private String p_weight;
     private String unit;
-    private Date right_alway;
+    private String right_alway;
 
-    public Product( String p_name, String p_price, String p_weight, String unit,Date right_alway) {
+    public Product( String p_name, String p_price, String p_weight, String unit,String right_alway) {
         this.p_name = p_name;
         this.p_price = p_price;
         this.p_weight = p_weight;
@@ -25,7 +25,7 @@ public class Product {
         this.unit = unit;
     }
 
-    public Product(String p_id, String p_name, String p_price, String p_weight, String unit, Date right_alway) {
+    public Product(int p_id, String p_name, String p_price, String p_weight, String unit, String right_alway) {
         this.p_id = p_id;
         this.p_name = p_name;
         this.p_price = p_price;
@@ -34,11 +34,11 @@ public class Product {
         this.right_alway = right_alway;
     }
 
-    public String getP_id() {
+    public int getP_id() {
         return p_id;
     }
 
-    public void setP_id(String p_id) {
+    public void setP_id(int p_id) {
         this.p_id = p_id;
     }
 
@@ -74,11 +74,11 @@ public class Product {
         this.unit = unit;
     }
 
-    public Date getRight_alway() {
+    public String getRight_alway() {
         return right_alway;
     }
 
-    public void setRight_alway(Date right_alway) {
+    public void setRight_alway(String right_alway) {
         this.right_alway = right_alway;
     }
 

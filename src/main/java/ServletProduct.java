@@ -86,7 +86,7 @@ public class ServletProduct extends HttpServlet {
         String price=request.getParameter("p_price");
         String weight=request.getParameter("p_weight");
         String unit=request.getParameter("unit");
-        Date right_alway= Date.valueOf(request.getParameter("right_alway"));
+        String right_alway= request.getParameter("right_alway");
         productDao.insert(new Product(name,price,weight,unit,right_alway));
         RequestDispatcher dispatcher=request.getRequestDispatcher("WEB-INF/view/list.jsp");
         dispatcher.forward(request,response);
@@ -98,11 +98,13 @@ public class ServletProduct extends HttpServlet {
     }
     private void editProduct(HttpServletRequest request,HttpServletResponse response)
         throws ServletException,IOException,SQLException{
+        int id= Integer.parseInt(request.getParameter("id"));
         String name=request.getParameter("name");
         String price=request.getParameter("price");
         String weight=request.getParameter("weight");
         String unit=request.getParameter("unit");
-       productDao.update(new Product(name,price,weight,unit)) ;
+        String alway= request.getParameter("right_alway");
+       productDao.update(new Product(id,name,price,weight,unit,alway)) ;
        RequestDispatcher dispatcher=request.getRequestDispatcher("WEB-INF/view/list.jsp");
        dispatcher.forward(request,response);
     }

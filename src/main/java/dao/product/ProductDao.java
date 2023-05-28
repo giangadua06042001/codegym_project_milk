@@ -12,7 +12,6 @@ public class ProductDao implements IProduct {
     String SELECT_FROM_MILK_PRODUCT = "SELECT * FROM milk.product;";
     String INSERT_INTO_MILK_PRODUCT = "insert into product(p_name,p_price,p_weight,unit,right_alway) values(?,?,?,?,?);";
     String DELETE_FROM_MILK_PRODUCT = "delete from product where p_id=?;";
-    String UPDATE_FROM_MILK_PRODUCT = "update product set p_name=?, p_price=?, p_weight=?, unit=? ,right_alway=?;";
     String SELECT_FROM_MILK_PRODUCT_BY_ID="select * from product where p_name like '%'?'%';";
 
 
@@ -63,12 +62,15 @@ public class ProductDao implements IProduct {
     @Override
     public boolean update(Product product) throws SQLException {
         boolean checkUpdate;
+        String UPDATE_FROM_MILK_PRODUCT = "update product set p_name=?, p_price=?, p_weight=?, unit=? ,right_alway=? where id=?;";
         try(Connection connection=getConnection();
         PreparedStatement statement=connection.prepareStatement(UPDATE_FROM_MILK_PRODUCT)) {
             statement.setString(1, product.getP_name());
             statement.setString(2,product.getP_price());
             statement.setString(3, product.getP_weight());
             statement.setString(4,product.getUnit());
+            statement.setString(5,product.getRight_alway());
+            statement.setInt(6, product.getP_id());
             checkUpdate=statement.executeUpdate()>0;
 
         }
@@ -82,12 +84,12 @@ public class ProductDao implements IProduct {
             System.out.println(statement);
             ResultSet set=statement.executeQuery();
             while (set.next()){
-                String id = set.getString("p_id");
+                int id = set.getInt("p_id");
                 String name1 = set.getString("p_name");
                 String price = set.getString("p_price");
                 String weight = set.getString("p_weight");
                 String unit = set.getString("unit");
-                Date right_alway=set.getDate("right_alway");
+                String right_alway=set.getString("right_alway");
 
                 productList1.add(new Product(id, name1, price, weight, unit,right_alway));
             }
@@ -107,12 +109,12 @@ public class ProductDao implements IProduct {
             System.out.println(statement);
             ResultSet set = statement.executeQuery();
             while (set.next()) {
-                String id = set.getString("p_id");
+                int id=set.getInt("p_id");
                 String name = set.getString("p_name");
                 String price = set.getString("p_price");
                 String weight = set.getString("p_weight");
                 String unit = set.getString("unit");
-                Date right_alway=set.getDate("right_alway");
+                String right_alway=set.getString("right_alway");
 
                 productList.add(new Product(id, name, price, weight, unit,right_alway));
             }
@@ -129,13 +131,13 @@ public class ProductDao implements IProduct {
              PreparedStatement statement = connection.prepareStatement(SELECT_FROM_MILK_PRODUCT_ARRANGE)) {
             ResultSet set = statement.executeQuery();
             while (set.next()) {
-                String id = set.getString("p_id");
+                int id = set.getInt("p_id");
                 String name = set.getString("p_name");
                 String price = set.getString("p_price");
                 String weight = set.getString("p_weight");
                 String unit = set.getString("unit");
-                Date right_alway = set.getDate("right_alway");
-                list.add(new Product(id,name,price,weight,right_alway));
+                String right_alway = set.getString("right_alway");
+                list.add(new Product(id,name,price,weight,unit,right_alway));
 
             }
         }catch (SQLException ex) {
