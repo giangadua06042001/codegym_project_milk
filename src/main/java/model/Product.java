@@ -4,27 +4,34 @@ import java.util.Date;
 
 public class Product {
     private String p_id;
-    private String name;
-    private String price;
-    private String weight;
+    private String p_name;
+    private String p_price;
+    private String p_weight;
     private String unit;
-    private Date right_away;
+    private Date right_alway;
 
-    public Product(String p_id, String name, String price, String weight, String unit) {
-        this.p_id = p_id;
-        this.name = name;
-        this.price = price;
-        this.weight = weight;
+    public Product( String p_name, String p_price, String p_weight, String unit,Date right_alway) {
+        this.p_name = p_name;
+        this.p_price = p_price;
+        this.p_weight = p_weight;
+        this.unit = unit;
+        this.right_alway=right_alway;
+    }
+
+    public Product(String p_name, String p_price, String p_weight, String unit) {
+        this.p_name = p_name;
+        this.p_price = p_price;
+        this.p_weight = p_weight;
         this.unit = unit;
     }
 
-    public Product(String p_id, String name, String price, String weight, String unit, Date right_away) {
+    public Product(String p_id, String p_name, String p_price, String p_weight, String unit, Date right_alway) {
         this.p_id = p_id;
-        this.name = name;
-        this.price = price;
-        this.weight = weight;
+        this.p_name = p_name;
+        this.p_price = p_price;
+        this.p_weight = p_weight;
         this.unit = unit;
-        this.right_away = right_away;
+        this.right_alway = right_alway;
     }
 
     public String getP_id() {
@@ -35,28 +42,28 @@ public class Product {
         this.p_id = p_id;
     }
 
-    public String getName() {
-        return name;
+    public String getP_name() {
+        return p_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setP_name(String p_name) {
+        this.p_name = p_name;
     }
 
-    public String getPrice() {
-        return price;
+    public String getP_price() {
+        return p_price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setP_price(String p_price) {
+        this.p_price = p_price;
     }
 
-    public String getWeight() {
-        return weight;
+    public String getP_weight() {
+        return p_weight;
     }
 
-    public void setWeight(String weight) {
-        this.weight = weight;
+    public void setP_weight(String p_weight) {
+        this.p_weight = p_weight;
     }
 
     public String getUnit() {
@@ -67,21 +74,21 @@ public class Product {
         this.unit = unit;
     }
 
-    public Date getRight_away() {
-        return right_away;
+    public Date getRight_alway() {
+        return right_alway;
     }
 
-    public void setRight_away(Date right_away) {
-        this.right_away = right_away;
+    public void setRight_alway(Date right_alway) {
+        this.right_alway = right_alway;
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "p_id='" + p_id + '\'' +
-                ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
-                ", weight='" + weight + '\'' +
+                ", name='" + p_name + '\'' +
+                ", price='" + p_price + '\'' +
+                ", weight='" + p_weight + '\'' +
                 ", unit='" + unit + '\'' +
                 '}';
     }
