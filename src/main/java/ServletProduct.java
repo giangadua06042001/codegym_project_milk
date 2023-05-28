@@ -32,6 +32,9 @@ public class ServletProduct extends HttpServlet {
               case "delete":
                   deleteProduct(request,response);
                   break;
+              case "sort":
+                  sortPriceProduct(request,response);
+                  break;
               default:
                   listProduct(request,response);
           }
@@ -115,6 +118,13 @@ public class ServletProduct extends HttpServlet {
         String id=request.getParameter("id");
         productDao.delete(id);
         RequestDispatcher dispatcher=request.getRequestDispatcher("WEB-INF/view/list.jsp");
+        dispatcher.forward(request,response);
+    }
+    private void sortPriceProduct(HttpServletRequest request,HttpServletResponse response)
+        throws ServletException,IOException{
+    List<Product>list= productDao.sortProduct();
+        request.setAttribute("listProduct",list);
+        RequestDispatcher dispatcher=request.getRequestDispatcher("WEB-INF/view/listSort.jsp");
         dispatcher.forward(request,response);
     }
 

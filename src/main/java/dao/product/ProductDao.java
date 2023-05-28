@@ -15,6 +15,7 @@ public class ProductDao implements IProduct {
     String UPDATE_FROM_MILK_PRODUCT = "update product set p_name=?, p_price=?, p_weight=?, unit=? ,right_alway=?;";
     String SELECT_FROM_MILK_PRODUCT_BY_ID="select * from product where p_name like '%'?'%';";
 
+
     public static Connection getConnection() {
         Connection connection = null;
         try {
@@ -120,6 +121,27 @@ public class ProductDao implements IProduct {
             printSQLException(ex);
         }
         return productList;
+    }
+    public List<Product>sortProduct() {
+        List<Product> list = new ArrayList<>();
+        String SELECT_FROM_MILK_PRODUCT_ARRANGE = "select * from product order by p_price desc;";
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_FROM_MILK_PRODUCT_ARRANGE)) {
+            ResultSet set = statement.executeQuery();
+            while (set.next()) {
+                String id = set.getString("p_id");
+                String name = set.getString("p_name");
+                String price = set.getString("p_price");
+                String weight = set.getString("p_weight");
+                String unit = set.getString("unit");
+                Date right_alway = set.getDate("right_alway");
+                list.add(new Product(id,name,price,weight,right_alway));
+
+            }
+        }catch (SQLException ex) {
+            printSQLException(ex);
+        }
+        return list;
     }
 
 
